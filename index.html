@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#25080f">
+    <meta name="description" content="Một món quà nhỏ từ tập thể Full boys 11A1 K48 gửi đến những bông hoa xinh đẹp nhất.">
+    <title>20.10 | Một món quà từ Full Boys 11A1 K48</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@500;600;700&family=Dancing+Script:wght@500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="flower.css">
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="effects/firework.js"></script>
+    <script type="module" src="app.js"></script>
+</head>
+<body class="intro-playing">
+    <div class="grain" aria-hidden="true"></div>
+    <canvas class="ambient-canvas" id="ambientCanvas" aria-hidden="true"></canvas>
+    <canvas class="matrix-canvas" id="matrixCanvas" aria-hidden="true"></canvas>
+    <canvas class="fireworks-canvas" id="fireworks-canvas" aria-hidden="true"></canvas>
+    <div class="transition-wash" aria-hidden="true"></div>
+    <main class="experience" id="experience">
+        <section class="scene scene--intro is-active" id="intro" aria-labelledby="intro-title">
+            <div class="intro-sequence" id="introSequence" aria-label="Trái tim neon mở đầu ngày 20 tháng 10">
+                <div class="intro-particle-canvas" id="introParticleCanvas" aria-hidden="true"></div>
+                <div class="heart-stage">
+                    <div class="heart-object">
+                        <button class="heart-trigger" type="button" data-start-intro aria-label="Chạm vào trái tim để tiếp tục"></button>
+                    </div>
+                </div>
+                <div class="intro-reveal" aria-live="polite">
+                    <p class="intro-reveal-kicker">TỪ TẬN ĐÁY LÒNG</p>
+                    <p class="intro-reveal-title">CHÚC MỪNG</p>
+                    <p class="intro-reveal-signature">NHỮNG BÔNG HOA TUYỆT VỜI NHẤT CỦA LỚP 11A1 K48</p>
+                </div>
+                <p class="intro-webgl-error" data-intro-error hidden>Hiệu ứng particles không khả dụng. Chạm vào trái tim để tiếp tục.</p>
+            </div>
+            <div class="scene-content intro-content">
+                <div class="intro-copy">
+                    <p class="eyebrow">A SPECIAL GIFT FOR YOU</p>
+                    <p class="intro-date" aria-label="Ngày 20 tháng 10">20<span>.</span>10</p>
+                    <h1 id="intro-title">Chúc mừng<br>Ngày Phụ nữ Việt Nam</h1>
+                    <p class="intro-signature">Gửi những bông hoa tuyệt vời nhất của 11A1 💗</p>
+                    <button class="button button--primary" type="button" data-go="matrix">Mở món quà <span aria-hidden="true">↗</span></button>
+                </div>
+                <div class="intro-flower" aria-hidden="true">
+                    <div class="flower-orbit flower-orbit--outer"></div>
+                    <div class="flower-orbit flower-orbit--inner"></div>
+                    <svg class="flower-botany" viewBox="0 0 400 650" preserveAspectRatio="none" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="intro-stem-gradient" x1="0" x2="1">
+                                <stop offset="0" stop-color="#385347"></stop>
+                                <stop offset=".48" stop-color="#a8bd8c"></stop>
+                                <stop offset="1" stop-color="#31473b"></stop>
+                            </linearGradient>
+                            <linearGradient id="intro-leaf-gradient" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0" stop-color="#b5c995"></stop>
+                                <stop offset=".52" stop-color="#76936f"></stop>
+                                <stop offset="1" stop-color="#3b6049"></stop>
+                            </linearGradient>
+                        </defs>
+                        <path class="botany-stem" d="M201 354 C198 423 207 510 199 650"></path>
+                        <path class="botany-branch" d="M202 484 C183 499 153 512 126 516"></path>
+                        <path class="botany-leaf" d="M198 431 C169 405 126 382 96 389 C112 418 156 438 198 431 Z"></path>
+                        <path class="botany-vein" d="M195 430 C162 412 128 398 99 390"></path>
+                        <path class="botany-leaf" d="M201 487 C223 459 265 437 294 444 C283 472 244 492 201 487 Z"></path>
+                        <path class="botany-vein" d="M204 486 C237 466 266 451 291 445"></path>
+                    </svg>
+                    <div class="flower-head flower-head--main">
+                        <span class="flower-petal"></span><span class="flower-petal"></span><span class="flower-petal"></span><span class="flower-petal"></span>
+                        <span class="flower-petal"></span><span class="flower-petal"></span><span class="flower-petal"></span><span class="flower-petal"></span>
+                        <i class="flower-heart"></i>
+                    </div>
+                    <div class="flower-head flower-head--small">
+                        <span class="flower-petal"></span><span class="flower-petal"></span><span class="flower-petal"></span><span class="flower-petal"></span>
+                        <span class="flower-petal"></span><span class="flower-petal"></span><span class="flower-petal"></span><span class="flower-petal"></span>
+                        <i class="flower-heart"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="scene scene--matrix" id="matrix" aria-labelledby="matrix-title" aria-hidden="true" inert>
+            <div class="scene-content reveal-content">
+                <p class="eyebrow">GỬI NHỮNG BÔNG HOA XINH ĐẸP NHẤT</p>
+                <p class="matrix-kicker">Một lời chúc từ Full Boys</p>
+                <h2 id="matrix-title" class="reveal-title">Chúc mừng<br><span>ngày 20.10</span></h2>
+                <p class="reveal-foot">Mong hôm nay dịu dàng với bạn như cách bạn làm thế giới quanh mình tươi sáng hơn.</p>
+                <div class="button-row">
+                    <button class="button button--primary" type="button" data-go="fireworks">Tiếp tục <span aria-hidden="true">↗</span></button>
+                </div>
+            </div>
+        </section>
+
+        <section class="scene scene--fireworks" id="fireworks" aria-labelledby="fireworks-title" aria-hidden="true" inert>
+            <div class="scene-content wishes-content">
+                <p class="eyebrow">NHỮNG ĐIỀU BẠN XỨNG ĐÁNG NHẬN ĐƯỢC</p>
+                <h2 id="fireworks-title">Chúc bạn luôn<br><span>toả sáng theo cách riêng</span></h2>
+                <div class="wish-journey">
+                    <p><span class="wish-number" aria-hidden="true">01</span><span class="wish-copy">Đủ <strong>tự tin</strong> để chọn con đường khiến trái tim mình vui.</span></p>
+                    <p><span class="wish-number" aria-hidden="true">02</span><span class="wish-copy">Đủ <strong>dịu dàng</strong> với bản thân trong những ngày chưa hoàn hảo.</span></p>
+                    <p><span class="wish-number" aria-hidden="true">03</span><span class="wish-copy">Được <strong>yêu thương, trân trọng</strong> và nhận thật nhiều điều bất ngờ.</span></p>
+                </div>
+                <p class="wish-signature">Hôm nay và mọi ngày sau đó, bạn đều xứng đáng được rực rỡ.</p>
+                <div class="button-row">
+                    <button class="button button--primary" type="button" data-go="closing">Tiếp tục hành trình <span aria-hidden="true">↗</span></button>
+                </div>
+            </div>
+        </section>
+
+        <section class="scene scene--closing" id="closing" aria-labelledby="closing-title" aria-hidden="true" inert>
+            <div class="closing-garden flowers scene-garden" aria-hidden="true">
+                <div class="flower flower--left-1">
+                    <div class="flower__leafs flower__leafs--left-1">
+                        <div class="flower__leaf flower__leaf--1"></div><div class="flower__leaf flower__leaf--2"></div><div class="flower__leaf flower__leaf--3"></div><div class="flower__leaf flower__leaf--4"></div><div class="flower__white-circle"></div>
+                        <div class="flower__light flower__light--1"></div><div class="flower__light flower__light--2"></div><div class="flower__light flower__light--3"></div><div class="flower__light flower__light--4"></div>
+                    </div>
+                    <div class="flower__line"><div class="flower__line__leaf flower__line__leaf--1"></div><div class="flower__line__leaf flower__line__leaf--2"></div><div class="flower__line__leaf flower__line__leaf--3"></div></div>
+                </div>
+                <div class="flower flower--1">
+                    <div class="flower__leafs flower__leafs--1">
+                        <div class="flower__leaf flower__leaf--1"></div><div class="flower__leaf flower__leaf--2"></div><div class="flower__leaf flower__leaf--3"></div><div class="flower__leaf flower__leaf--4"></div><div class="flower__white-circle"></div>
+                        <div class="flower__light flower__light--1"></div><div class="flower__light flower__light--2"></div><div class="flower__light flower__light--3"></div><div class="flower__light flower__light--4"></div><div class="flower__light flower__light--5"></div><div class="flower__light flower__light--6"></div><div class="flower__light flower__light--7"></div><div class="flower__light flower__light--8"></div>
+                    </div>
+                    <div class="flower__line"><div class="flower__line__leaf flower__line__leaf--1"></div><div class="flower__line__leaf flower__line__leaf--2"></div><div class="flower__line__leaf flower__line__leaf--3"></div><div class="flower__line__leaf flower__line__leaf--4"></div><div class="flower__line__leaf flower__line__leaf--5"></div><div class="flower__line__leaf flower__line__leaf--6"></div></div>
+                </div>
+                <div class="flower flower--2">
+                    <div class="flower__leafs flower__leafs--2">
+                        <div class="flower__leaf flower__leaf--1"></div><div class="flower__leaf flower__leaf--2"></div><div class="flower__leaf flower__leaf--3"></div><div class="flower__leaf flower__leaf--4"></div><div class="flower__white-circle"></div>
+                        <div class="flower__light flower__light--1"></div><div class="flower__light flower__light--2"></div><div class="flower__light flower__light--3"></div><div class="flower__light flower__light--4"></div><div class="flower__light flower__light--5"></div><div class="flower__light flower__light--6"></div><div class="flower__light flower__light--7"></div><div class="flower__light flower__light--8"></div>
+                    </div>
+                    <div class="flower__line"><div class="flower__line__leaf flower__line__leaf--1"></div><div class="flower__line__leaf flower__line__leaf--2"></div><div class="flower__line__leaf flower__line__leaf--3"></div><div class="flower__line__leaf flower__line__leaf--4"></div></div>
+                </div>
+                <div class="flower flower--3">
+                    <div class="flower__leafs flower__leafs--3">
+                        <div class="flower__leaf flower__leaf--1"></div><div class="flower__leaf flower__leaf--2"></div><div class="flower__leaf flower__leaf--3"></div><div class="flower__leaf flower__leaf--4"></div><div class="flower__white-circle"></div>
+                        <div class="flower__light flower__light--1"></div><div class="flower__light flower__light--2"></div><div class="flower__light flower__light--3"></div><div class="flower__light flower__light--4"></div><div class="flower__light flower__light--5"></div><div class="flower__light flower__light--6"></div><div class="flower__light flower__light--7"></div><div class="flower__light flower__light--8"></div>
+                    </div>
+                    <div class="flower__line"><div class="flower__line__leaf flower__line__leaf--1"></div><div class="flower__line__leaf flower__line__leaf--2"></div><div class="flower__line__leaf flower__line__leaf--3"></div><div class="flower__line__leaf flower__line__leaf--4"></div></div>
+                </div>
+                <div class="flower flower--right-1">
+                    <div class="flower__leafs flower__leafs--right-1">
+                        <div class="flower__leaf flower__leaf--1"></div><div class="flower__leaf flower__leaf--2"></div><div class="flower__leaf flower__leaf--3"></div><div class="flower__leaf flower__leaf--4"></div><div class="flower__white-circle"></div>
+                        <div class="flower__light flower__light--1"></div><div class="flower__light flower__light--2"></div><div class="flower__light flower__light--3"></div><div class="flower__light flower__light--4"></div>
+                    </div>
+                    <div class="flower__line"><div class="flower__line__leaf flower__line__leaf--1"></div><div class="flower__line__leaf flower__line__leaf--2"></div><div class="flower__line__leaf flower__line__leaf--3"></div></div>
+                </div>
+                <div class="flower flower--left-2">
+                    <div class="flower__leafs flower__leafs--left-2">
+                        <div class="flower__leaf flower__leaf--1"></div><div class="flower__leaf flower__leaf--2"></div><div class="flower__leaf flower__leaf--3"></div><div class="flower__leaf flower__leaf--4"></div><div class="flower__white-circle"></div>
+                        <div class="flower__light flower__light--1"></div><div class="flower__light flower__light--2"></div><div class="flower__light flower__light--3"></div><div class="flower__light flower__light--4"></div>
+                    </div>
+                    <div class="flower__line"><div class="flower__line__leaf flower__line__leaf--1"></div><div class="flower__line__leaf flower__line__leaf--2"></div><div class="flower__line__leaf flower__line__leaf--3"></div></div>
+                </div>
+                <div class="flower flower--right-2">
+                    <div class="flower__leafs flower__leafs--right-2">
+                        <div class="flower__leaf flower__leaf--1"></div><div class="flower__leaf flower__leaf--2"></div><div class="flower__leaf flower__leaf--3"></div><div class="flower__leaf flower__leaf--4"></div><div class="flower__white-circle"></div>
+                        <div class="flower__light flower__light--1"></div><div class="flower__light flower__light--2"></div><div class="flower__light flower__light--3"></div><div class="flower__light flower__light--4"></div>
+                    </div>
+                    <div class="flower__line"><div class="flower__line__leaf flower__line__leaf--1"></div><div class="flower__line__leaf flower__line__leaf--2"></div><div class="flower__line__leaf flower__line__leaf--3"></div></div>
+                </div>
+            </div>
+            <div class="scene-content closing-content">
+                <p class="eyebrow">MỘT KHU VƯỜN NHỎ DÀNH RIÊNG CHO BẠN</p>
+                <h2 id="closing-title">Mong mỗi ngày của bạn<br>đều nở rộ như mùa hoa.</h2>
+                <p class="closing-signature">Mong bạn luôn <strong>tự tin tỏa sáng</strong>, được yêu thương và gặp thật nhiều điều dịu dàng.</p>
+                <button class="button button--primary" type="button" data-go="letter">Mở bức thư cuối cùng <span aria-hidden="true">↗</span></button>
+            </div>
+        </section>
+
+        <section class="scene scene--letter" id="letter" aria-labelledby="letter-heading" aria-hidden="true" inert>
+            <div class="letter-garden flowers scene-garden" aria-hidden="true">
+                <div class="flower flower--left-1">
+                    <div class="flower__leafs flower__leafs--left-1">
+                        <div class="flower__leaf flower__leaf--1"></div><div class="flower__leaf flower__leaf--2"></div><div class="flower__leaf flower__leaf--3"></div><div class="flower__leaf flower__leaf--4"></div><div class="flower__white-circle"></div>
+                        <div class="flower__light flower__light--1"></div><div class="flower__light flower__light--2"></div><div class="flower__light flower__light--3"></div><div class="flower__light flower__light--4"></div>
+                    </div>
+                    <div class="flower__line"><div class="flower__line__leaf flower__line__leaf--1"></div><div class="flower__line__leaf flower__line__leaf--2"></div><div class="flower__line__leaf flower__line__leaf--3"></div></div>
+                </div>
+                <div class="flower flower--1">
+                    <div class="flower__leafs flower__leafs--1">
+                        <div class="flower__leaf flower__leaf--1"></div><div class="flower__leaf flower__leaf--2"></div><div class="flower__leaf flower__leaf--3"></div><div class="flower__leaf flower__leaf--4"></div><div class="flower__white-circle"></div>
+                        <div class="flower__light flower__light--1"></div><div class="flower__light flower__light--2"></div><div class="flower__light flower__light--3"></div><div class="flower__light flower__light--4"></div><div class="flower__light flower__light--5"></div><div class="flower__light flower__light--6"></div><div class="flower__light flower__light--7"></div><div class="flower__light flower__light--8"></div>
+                    </div>
+                    <div class="flower__line"><div class="flower__line__leaf flower__line__leaf--1"></div><div class="flower__line__leaf flower__line__leaf--2"></div><div class="flower__line__leaf flower__line__leaf--3"></div><div class="flower__line__leaf flower__line__leaf--4"></div><div class="flower__line__leaf flower__line__leaf--5"></div><div class="flower__line__leaf flower__line__leaf--6"></div></div>
+                </div>
+                <div class="flower flower--2">
+                    <div class="flower__leafs flower__leafs--2">
+                        <div class="flower__leaf flower__leaf--1"></div><div class="flower__leaf flower__leaf--2"></div><div class="flower__leaf flower__leaf--3"></div><div class="flower__leaf flower__leaf--4"></div><div class="flower__white-circle"></div>
+                        <div class="flower__light flower__light--1"></div><div class="flower__light flower__light--2"></div><div class="flower__light flower__light--3"></div><div class="flower__light flower__light--4"></div><div class="flower__light flower__light--5"></div><div class="flower__light flower__light--6"></div><div class="flower__light flower__light--7"></div><div class="flower__light flower__light--8"></div>
+                    </div>
+                    <div class="flower__line"><div class="flower__line__leaf flower__line__leaf--1"></div><div class="flower__line__leaf flower__line__leaf--2"></div><div class="flower__line__leaf flower__line__leaf--3"></div><div class="flower__line__leaf flower__line__leaf--4"></div></div>
+                </div>
+                <div class="flower flower--3">
+                    <div class="flower__leafs flower__leafs--3">
+                        <div class="flower__leaf flower__leaf--1"></div><div class="flower__leaf flower__leaf--2"></div><div class="flower__leaf flower__leaf--3"></div><div class="flower__leaf flower__leaf--4"></div><div class="flower__white-circle"></div>
+                        <div class="flower__light flower__light--1"></div><div class="flower__light flower__light--2"></div><div class="flower__light flower__light--3"></div><div class="flower__light flower__light--4"></div><div class="flower__light flower__light--5"></div><div class="flower__light flower__light--6"></div><div class="flower__light flower__light--7"></div><div class="flower__light flower__light--8"></div>
+                    </div>
+                    <div class="flower__line"><div class="flower__line__leaf flower__line__leaf--1"></div><div class="flower__line__leaf flower__line__leaf--2"></div><div class="flower__line__leaf flower__line__leaf--3"></div><div class="flower__line__leaf flower__line__leaf--4"></div></div>
+                </div>
+                <div class="flower flower--right-1">
+                    <div class="flower__leafs flower__leafs--right-1">
+                        <div class="flower__leaf flower__leaf--1"></div><div class="flower__leaf flower__leaf--2"></div><div class="flower__leaf flower__leaf--3"></div><div class="flower__leaf flower__leaf--4"></div><div class="flower__white-circle"></div>
+                        <div class="flower__light flower__light--1"></div><div class="flower__light flower__light--2"></div><div class="flower__light flower__light--3"></div><div class="flower__light flower__light--4"></div>
+                    </div>
+                    <div class="flower__line"><div class="flower__line__leaf flower__line__leaf--1"></div><div class="flower__line__leaf flower__line__leaf--2"></div><div class="flower__line__leaf flower__line__leaf--3"></div></div>
+                </div>
+                <div class="flower flower--left-2">
+                    <div class="flower__leafs flower__leafs--left-2">
+                        <div class="flower__leaf flower__leaf--1"></div><div class="flower__leaf flower__leaf--2"></div><div class="flower__leaf flower__leaf--3"></div><div class="flower__leaf flower__leaf--4"></div><div class="flower__white-circle"></div>
+                        <div class="flower__light flower__light--1"></div><div class="flower__light flower__light--2"></div><div class="flower__light flower__light--3"></div><div class="flower__light flower__light--4"></div>
+                    </div>
+                    <div class="flower__line"><div class="flower__line__leaf flower__line__leaf--1"></div><div class="flower__line__leaf flower__line__leaf--2"></div><div class="flower__line__leaf flower__line__leaf--3"></div></div>
+                </div>
+                <div class="flower flower--right-2">
+                    <div class="flower__leafs flower__leafs--right-2">
+                        <div class="flower__leaf flower__leaf--1"></div><div class="flower__leaf flower__leaf--2"></div><div class="flower__leaf flower__leaf--3"></div><div class="flower__leaf flower__leaf--4"></div><div class="flower__white-circle"></div>
+                        <div class="flower__light flower__light--1"></div><div class="flower__light flower__light--2"></div><div class="flower__light flower__light--3"></div><div class="flower__light flower__light--4"></div>
+                    </div>
+                    <div class="flower__line"><div class="flower__line__leaf flower__line__leaf--1"></div><div class="flower__line__leaf flower__line__leaf--2"></div><div class="flower__line__leaf flower__line__leaf--3"></div></div>
+                </div>
+            </div>
+            <div class="letter-sparkles" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="letter-heading">
+                <p class="eyebrow">DÀNH RIÊNG CHO BẠN</p>
+                <h2 id="letter-heading">Gửi những bông hoa rực rỡ<br>của lớp 11A1 K48</h2>
+            </div>
+            <article class="envelope is-closed" id="envelope" aria-label="Phong thư chúc mừng ngày 20 tháng 10">
+                <div class="envelope-back" aria-hidden="true"></div>
+                <div class="letter-paper">
+                    <div class="letter-scroll" tabindex="0" aria-label="Nội dung lời chúc">
+                        <p class="letter-overline">THÂN GỬI CÁC BẠN NỮ LỚP 11A1 K48</p>
+                        <div class="letter-pages" aria-live="polite">
+                            <section class="letter-page is-current" data-page="0">
+                                <h3>Gửi đến những cô gái lớp 11A1 K48,</h3>
+                                <p>Nhân ngày 20/10, tập thể FUll boys lớp 11A1 K48 muốn gửi đến các bạn những lời chúc chân thành và ấm áp nhất. Cảm ơn các bạn vì đã làm cho mỗi ngày đến lớp trở nên vui vẻ, đáng nhớ và nhiều tiếng cười hơn.</p>
+                            </section>
+                            <section class="letter-page" data-page="1" hidden>
+                                <h3>Mong bạn luôn rạng rỡ</h3>
+                                <p>Chúc các bạn nữ luôn xinh đẹp, rạng rỡ và hạnh phúc trong ngày 20/10 cũng như mỗi ngày trong năm!</p>
+                                <p>Chúc bạn luôn tự tin, mạnh mẽ và thành công trên con đường bạn đã chọn. 20/10 vui vẻ nhé!</p>
+                            </section>
+                            <section class="letter-page" data-page="2" hidden>
+                                <h3>Những điều dịu dàng</h3>
+                                <p>Ngày 20/10, chúc bạn được yêu thương thật nhiều, nhận thật nhiều hoa và nụ cười!</p>
+                                <p>Cuối cùng! Chúc bạn mãi tươi trẻ, tràn đầy năng lượng và luôn là phiên bản tuyệt vời nhất của chính mình!</p>
+                            </section>
+                            <section class="letter-page letter-page--poem" data-page="3" hidden>
+                                <h3>Một mùa hoa dành tặng bạn</h3>
+                                <p>Tháng Mười ghé qua hiền như nắng,<br>Gom chút dịu dàng gửi đến bạn thân.<br>Chúc nụ cười luôn trong veo, tươi thắm,<br>Mỗi ngày bình yên, rực rỡ muôn phần.</p>
+                                <p class="letter-signoff">Thân thương,<br><strong>Full Boys 11A1 K48</strong></p>
+                            </section>
+                        </div>
+                    </div>
+                    <nav class="letter-nav" aria-label="Điều hướng lời nhắn">
+                        <button class="icon-button" type="button" data-page-prev aria-label="Trang trước" disabled>←</button>
+                        <span class="page-count" aria-live="polite">01 / 04</span>
+                        <button class="icon-button" type="button" data-page-next aria-label="Trang tiếp">→</button>
+                    </nav>
+                </div>
+                <div class="envelope-pocket" aria-hidden="true"></div>
+                <div class="envelope-flap" aria-hidden="true"></div>
+                <button class="wax-seal" type="button" data-open-letter aria-label="Mở thư của 11A1">11A1</button>
+            </article>
+            <div class="letter-controls">
+                <button class="button button--quiet" type="button" data-close-letter hidden>Gấp thư lại</button>
+            </div>
+        </section>
+    </main>
+    <nav class="scene-controls" aria-label="Điều hướng các cảnh">
+        <button class="icon-button" type="button" data-back aria-label="Cảnh trước" title="Cảnh trước" disabled>←</button>
+        <span class="scene-progress" aria-live="polite">01 / 05</span>
+        <button class="icon-button" type="button" data-forward aria-label="Cảnh tiếp theo" title="Cảnh tiếp theo">→</button>
+    </nav>
+</body>
+</html>
