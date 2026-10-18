@@ -191,7 +191,8 @@ void main() {
 
     float depthScale = uMode < 0.5 ? heartPerspective : 1.0;
     gl_Position = screenPosition(screen, uMode < 0.5 ? clamp(rotatedHeart.z / 1800.0, -0.8, 0.8) : 0.0);
-    float textScale = uIsLabel > 0.5 ? 1.5 : (uMode > 1.5 ? 1.65 : 1.0);
+    float textScale = uIsLabel > 0.5 ? 1.5
+        : (uMode > 1.5 ? (uResolution.x < 600.0 ? 1.75 : 1.65) : 1.0);
     float beatScale = uMode < 0.5 ? 1.0 + beat * 0.48 : 1.0 + textPulse * 0.22;
     float blastScale = uMode > 4.5 ? 1.0 + clamp((uTime - uFormStart) / 1.4, 0.0, 1.0) * 1.6 : 1.0;
     if (uReducedMotion < 0.5) {
@@ -829,7 +830,7 @@ export class IntroParticleRenderer {
         if (!context) throw new Error('Unable to create a canvas for particle text.');
         const width = window.innerWidth;
         const height = window.innerHeight;
-        const maxTextWidth = width * 0.96;
+        const maxTextWidth = width * (width < 600 ? 0.9 : 0.96);
         let fontSize = width < 600
             ? Math.min(56, height * 0.095)
             : width >= 1400
@@ -856,7 +857,7 @@ export class IntroParticleRenderer {
         });
 
         const pixels = context.getImageData(0, 0, canvas.width, canvas.height).data;
-        const gap = 2;
+        const gap = window.innerWidth < 600 ? 1 : 2;
         const offsetX = (width - canvas.width) / 2;
         const offsetY = (height - canvas.height) / 2;
         const targets: TextTarget[] = [];

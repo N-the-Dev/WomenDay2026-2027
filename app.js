@@ -11,8 +11,13 @@ import { IntroParticleRenderer } from './src/intro-particles.ts';
     const letterScene = document.getElementById('letter');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const wash = document.querySelector('.transition-wash');
-    const letterFlapDuration = 860;
-    const letterPaperDuration = 820;
+    const letterFlapDuration = 900;
+    const letterPaperDuration = 1250;
+    const letterPaperSettleDuration = 560;
+    const letterPaperReturnDuration = 560;
+    const letterFlapCloseDelay = 120;
+    const letterPaperLeadIn = letterFlapDuration + 120;
+    const letterPaperTransitionDelay = 120;
     let activeScene = 0;
     let matrixFrame = null;
     let matrixColumns = [];
@@ -423,6 +428,13 @@ import { IntroParticleRenderer } from './src/intro-particles.ts';
         void introParticles?.formText(lines);
     }
 
+    function showFinalIntroText() {
+        const lines = window.innerWidth < 600
+            ? ['NHỮNG BÔNG HOA', 'TUYỆT VỜI NHẤT', 'CỦA LỚP 11A1 K48']
+            : ['NHỮNG BÔNG HOA TUYỆT VỜI NHẤT', 'CỦA LỚP 11A1 K48'];
+        showIntroText(lines);
+    }
+
     function startIntro() {
         if (introStarted) return;
         if (!introParticles) {
@@ -436,7 +448,7 @@ import { IntroParticleRenderer } from './src/intro-particles.ts';
         introShapeTimers = [
             setTimeout(() => showIntroText(['CHÚC MỪNG']), reducedMotion.matches ? 100 : 1400),
             setTimeout(() => showIntroText(['NGÀY 20/10']), reducedMotion.matches ? 2000 : 6000),
-            setTimeout(() => showIntroText(['NHỮNG BÔNG HOA TUYỆT VỜI NHẤT', 'CỦA LỚP 11A1 K48']), reducedMotion.matches ? 4100 : 11600)
+            setTimeout(showFinalIntroText, reducedMotion.matches ? 4100 : 11600)
         ];
         introTimer = setTimeout(finishIntro, reducedMotion.matches ? 7000 : 17200);
     }
@@ -786,7 +798,7 @@ import { IntroParticleRenderer } from './src/intro-particles.ts';
         const sealButton = document.querySelector('[data-open-letter]');
         const closeButton = document.querySelector('[data-close-letter]');
         const pageButtons = document.querySelectorAll('[data-page-prev], [data-page-next]');
-        const transitionClasses = ['is-opening', 'is-paper-rising', 'is-paper-settling', 'is-paper-returning', 'is-closing'];
+        const transitionClasses = ['is-opening', 'is-paper-rising', 'is-paper-settling', 'is-paper-returning', 'is-paper-entering', 'is-closing'];
         const clearTransitionClasses = () => transitionClasses.forEach((className) => envelope.classList.remove(className));
 
         pageButtons.forEach((button) => { button.disabled = true; });
@@ -801,6 +813,7 @@ import { IntroParticleRenderer } from './src/intro-particles.ts';
             envelope.classList.toggle('is-closed', !open);
             envelope.setAttribute('aria-label', open ? 'Lá thư đã mở' : 'Phong thư đang đóng');
             if (open) {
+                closeButton.hidden = false;
                 startLetterLoop();
                 setLetterPage(pageIndex);
                 document.querySelector('.letter-scroll').focus({ preventScroll: true });
@@ -808,6 +821,7 @@ import { IntroParticleRenderer } from './src/intro-particles.ts';
                 letterScene.classList.remove('letter-open');
                 stopLetterLoop();
                 if (fireworks) fireworks.pause();
+                setLetterPage(pageIndex);
                 sealButton.disabled = false;
                 sealButton.setAttribute('aria-hidden', 'false');
                 sealButton.tabIndex = 0;
@@ -833,9 +847,9 @@ import { IntroParticleRenderer } from './src/intro-particles.ts';
                         setLetterPage(pageIndex);
                         document.querySelector('.letter-scroll').focus({ preventScroll: true });
                         letterTransitionTimer = null;
-                    }, letterPaperDuration);
-                }, letterPaperDuration);
-            }, letterFlapDuration);
+                    }, letterPaperSettleDuration);
+                }, letterPaperDuration + letterPaperTransitionDelay);
+            }, letterPaperLeadIn);
             return;
         }
 
@@ -845,19 +859,22 @@ import { IntroParticleRenderer } from './src/intro-particles.ts';
         if (fireworks) fireworks.pause();
         envelope.classList.add('is-paper-returning');
         letterTransitionTimer = setTimeout(() => {
-            envelope.classList.replace('is-paper-returning', 'is-closing');
+            envelope.classList.replace('is-paper-returning', 'is-paper-entering');
             letterTransitionTimer = setTimeout(() => {
-                envelope.classList.remove('is-closing');
-                envelope.classList.add('is-closed');
-                envelope.setAttribute('aria-label', 'Phong thư đang đóng');
-                sealButton.disabled = false;
-                sealButton.setAttribute('aria-hidden', 'false');
-                sealButton.tabIndex = 0;
-                sealButton.focus({ preventScroll: true });
-                setLetterPage(pageIndex);
-                letterTransitionTimer = null;
-            }, letterFlapDuration);
-        }, letterPaperDuration);
+                envelope.classList.replace('is-paper-entering', 'is-closing');
+                letterTransitionTimer = setTimeout(() => {
+                    envelope.classList.remove('is-closing');
+                    envelope.classList.add('is-closed');
+                    envelope.setAttribute('aria-label', 'Phong thư đang đóng');
+                    sealButton.disabled = false;
+                    sealButton.setAttribute('aria-hidden', 'false');
+                    sealButton.tabIndex = 0;
+                    sealButton.focus({ preventScroll: true });
+                    setLetterPage(pageIndex);
+                    letterTransitionTimer = null;
+                }, letterFlapCloseDelay + letterFlapDuration + 60);
+            }, letterPaperDuration + 100);
+        }, letterPaperReturnDuration);
     }
 
     document.addEventListener('click', (event) => {
@@ -866,6 +883,7 @@ import { IntroParticleRenderer } from './src/intro-particles.ts';
         if (event.target.closest('[data-back]')) showScene(activeScene - 1);
         if (event.target.closest('[data-forward]')) showScene(activeScene + 1);
         if (event.target.closest('[data-open-letter]')) openLetter(true);
+        else if (event.target.closest('#envelope.is-closed') && !event.target.closest('button')) openLetter(true);
         if (event.target.closest('[data-close-letter]')) openLetter(false);
         if (event.target.closest('[data-page-prev]')) setLetterPage(pageIndex - 1);
         if (event.target.closest('[data-page-next]')) setLetterPage(pageIndex + 1);
