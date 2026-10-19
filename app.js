@@ -8,6 +8,8 @@ import { IntroParticleRenderer } from './src/intro-particles.ts';
     const envelope = document.getElementById('envelope');
     const introSequence = document.getElementById('introSequence');
     const introParticleCanvas = document.getElementById('introParticleCanvas');
+    const introMusic = document.getElementById('introMusic');
+    const backgroundMusic = document.getElementById('backgroundMusic');
     const letterScene = document.getElementById('letter');
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     const wash = document.querySelector('.transition-wash');
@@ -435,8 +437,28 @@ import { IntroParticleRenderer } from './src/intro-particles.ts';
         showIntroText(lines);
     }
 
+    function playBackgroundMusic() {
+        if (!(backgroundMusic instanceof HTMLAudioElement)) {
+            console.error('Unable to find the background music audio element.');
+            return;
+        }
+        backgroundMusic.volume = 0.15;
+        void backgroundMusic.play().catch((error) => {
+            console.error('Unable to play the background music.', error);
+        });
+    }
+
     function startIntro() {
         if (introStarted) return;
+        if (!(introMusic instanceof HTMLAudioElement)) {
+            console.error('Unable to find the intro music audio element.');
+        } else {
+            introMusic.volume = 0.2;
+            introMusic.addEventListener('ended', playBackgroundMusic, { once: true });
+            void introMusic.play().catch((error) => {
+                console.error('Unable to play the intro music.', error);
+            });
+        }
         if (!introParticles) {
             finishIntro();
             return;

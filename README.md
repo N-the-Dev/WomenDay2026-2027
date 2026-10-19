@@ -13,7 +13,7 @@ Mở URL Vite hiển thị trong terminal. Tạo bản production bằng `npm ru
 
 ## Trải nghiệm và cấu trúc
 
-- `index.html`, `style.css`, `app.js`: hành trình 11A1 K48 và điều phối chuyển cảnh.
+- `index.html`, `style.css`, `app.js`: hành trình 11A1 K48 và điều phối chuyển cảnh; nhạc intro trong `assets/intro-end-of-the-world.mp3` bắt đầu phát khi chạm trái tim, sau đó chuyển sang nhạc nền `assets/chill-background.mp3` phát lặp ở âm lượng 15%.
 - `src/intro-particles.ts`: intro Three.js/WebGL 2; vertex/fragment shader GLSL chạy chuyển động tim 3D, nhịp đập, burst và tạo chữ bằng particles trên GPU.
 - `package.json`, `tsconfig.json`: scripts và cấu hình build TypeScript/Vite.
 - `effects/firework.js`: canvas pháo hoa có giới hạn particle, DPR tối đa 2, tạm dừng khi tab ẩn và cleanup listener.
@@ -28,7 +28,7 @@ Mở URL Vite hiển thị trong terminal. Tạo bản production bằng `npm ru
 - Cảnh Matrix có nút phát lại; chặng lời chúc có hiệu ứng pháo hoa tùy chọn.
 - Vườn hoa và thư cuối dùng hiệu ứng 16 cây hoa 3D nở từ đáy rồi lắc lư nhẹ; khi quay lại cảnh, nhịp nở được phát lại. Nội dung thư cũng reveal từng chữ khi chuyển trang. Khi mở thư, ánh sáng/hạt lấp lánh và pháo hoa nền chạy lặp nhẹ; khi đóng/rời cảnh, loop dừng.
 - Nhấn con dấu `11A1` để mở thư; dùng nút gấp thư, điều hướng trang trước/sau và vùng nội dung có thể cuộn. `Escape` gấp thư; nút cuối thư xem lại từ đầu.
-- `prefers-reduced-motion` giảm hiệu ứng; không phát âm thanh tự động.
+- `prefers-reduced-motion` giảm hiệu ứng; nhạc chỉ phát sau khi chạm trái tim: nhạc intro ở âm lượng 20%, tiếp nối bằng nhạc nền lặp ở âm lượng 15%.
 
 ## Kiểm tra
 
