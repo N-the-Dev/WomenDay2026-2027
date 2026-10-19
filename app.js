@@ -692,7 +692,7 @@ import { IntroParticleRenderer } from './src/intro-particles.ts';
 
     function prepareSceneText(scene) {
         const targets = scene.querySelectorAll(
-            '.scene-content .eyebrow, .scene-content p, .scene-content h1, .scene-content h2, .scene-content h3, .scene-content .button, .letter-heading .eyebrow, .letter-heading h2, .letter-controls .button'
+            '.scene-content .eyebrow, .scene-content p:not(.intro-date), .scene-content h1, .scene-content h2, .scene-content h3, .scene-content .button, .letter-heading .eyebrow, .letter-heading h2, .letter-controls .button'
         );
         return prepareCharacterReveal(targets);
     }
